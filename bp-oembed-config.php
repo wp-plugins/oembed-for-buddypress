@@ -14,6 +14,6 @@ $bp_oembed['forum_posts'] = true;
 // whitelist - skip urls from oEmbed parsing + caching
 // default: skip hyperlinked urls and urls residing on the same domain as BP
 // you can add additional domains to the array for whitelisting
-$bp_oembed['whitelist'] = array('<a ','">','<a>','localhost','tradingmetro.com');
+$bp_oembed['whitelist'] = array('<a ','">','<a>');
 
 ?>
