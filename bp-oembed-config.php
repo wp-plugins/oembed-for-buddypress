@@ -12,8 +12,7 @@ $bp_oembed['activity_comments'] = true;
 $bp_oembed['forum_posts'] = true;
 
 // whitelist - skip urls from oEmbed parsing + caching
-// default: skip hyperlinked urls
-// you can add additional domains to the array for whitelisting
-$bp_oembed['whitelist'] = array('<a ','">','<a>');
-
+// you can add domains to the whitelist array
+// eg. uncomment the following line to whitelist links from google.com
+//$bp_oembed['whitelist'][] = 'google.com';
 ?>
