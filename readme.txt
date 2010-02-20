@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, oembed, embed
 Requires at least: WP 2.9 / WPMU 2.9.1.1 & BuddyPress 1.2
 Tested up to: WP 2.9 / WPMU 2.9.1.1 & BuddyPress 1.2
-Stable tag: 0.5
+Stable tag: 0.51
 
 The easiest way to share your favorite content from sites like YouTube, Flickr, Hulu and more on your BuddyPress network. 
 
@@ -38,9 +38,20 @@ When the update is posted, the URL automagically transforms into the embedded co
 
 #### This plugin requires Wordpress 2.9 or Wordpress MU 2.9.1.1 and BuddyPress 1.2 ####
 
+#### IMPORTANT: Rename the plugin folder from "oembed-for-buddypress" to "bp-oembed" before activating the plugin! ####
+
 1. Upload the plugin folder to the `/wp-content/plugins/` directory.
 1. Rename the plugin folder from "oembed-for-buddypress" to "bp-oembed".
 1. Login to the Wordpress dashboard and navigate to "Plugins > Installed".  Activate the "oEmbed for BuddyPress" plugin (for WPMU users, activate the plugin on the blog where BuddyPress is activated).
+
+
+#### Upgrading ####
+
+1. Deactivate the plugin.
+1. If you made changes to the config file, make a backup of `bp-oembed-config.php`
+1. Overwrite all files in `/wp-content/plugins/bp-oembed/'
+1. Re-add custom settings from `bp-oembed-config.php` (if applicable)
+1. Reactivate the plugin
 
 
 == Frequently Asked Questions ==
@@ -103,6 +114,17 @@ And change it to:
 `$bp_oembed['activity_comments'] = false;`
 
 
+#### How do I extend Wordpress' oEmbed provider list? ####
+
+By default, you can only embed content from websites listed on Wordpress' internal whitelist. This is to prevent the embedding of malicious content from untrustworthy websites.
+
+To add an oEmbed provider, read the following article for more info:
+http://codex.wordpress.org/Embeds#Adding_Support_For_An_oEmbed-Enabled_Site
+
+The other option is you can override Wordpress' internal whitelist and enable *any* site that is oEmbeddable by downloading and activating Viper007Bond's Enable oEmbed Discovery plugin.
+**You should only activate the oEmbed Discovery plugin if you trust your user base. You've been warned.**
+
+
 == Technical info ==
 
 Because oEmbed for BuddyPress checks each link to see if it is oEmbeddable, for performance reasons, each link is cached in the database to reduce redundant oEmbed requests.
@@ -111,20 +133,21 @@ The cached entry is either the embed code (if the link is oEmbeddable) or the fa
 
 **Whitelist feature**
 
-By default, the plugin *whitelists* hyperlinks.
+By default, the plugin *whitelists* hyperlinks and URLs residing on the same domain as BuddyPress.
 
-`$bp_oembed['whitelist'] = array('<a ','">','<a>');`
-
-The cool thing is you can extend the whitelist by tacking on domains to the `$bp_oembed['whitelist']` array.
+The cool thing is you can extend the whitelist.
 
 For example, in an activity update, say you type in "http://www.google.com", the plugin will cache that link in the database.  Say you wanted to omit Google.com links from being cached.
 
-Open `bp-oembed-config.php` in a text editor and edit the `$bp_oembed['whitelist']` array to the following:
+Open `bp-oembed-config.php` in a text editor and add the following line to the end:
 
-`$bp_oembed['whitelist'] = array('<a ','">','<a>','google.com');`
+`$bp_oembed['whitelist'][] = 'google.com';`
 
+This will whitelist all links from google.com.
 
 == Known issues ==
+
+* array_map() warning is displayed - this is a BuddyPress issue, which is fixed in the latest bleeding version of BuddyPress (http://trac.buddypress.org/changeset/2747)
 
 * When a forum post is deleted, the oEmbed forum post cache in bbPress isn't deleted ([appears to be a bbPress issue](http://bbpress.org/forums/topic/does-deleting-a-forum-post-delete-the-related-bb_meta-as-well))
 
@@ -156,6 +179,13 @@ There are a couple of ways you can choose to support me:
 * Spread the gospel of BuddyPress
 
 == Changelog ==
+
+= 0.51 =
+* Added rename plugin folder instructions (*IMPORTANT*)
+* Fixed "cannot modify header information" bug (thanks geoffm33 for reporting)
+* Moved default, whitelist items out of config to plugin base
+* Added BuddyPress domain to whitelist
+* Added instructions to extend oEmbed provider list to readme.txt
 
 = 0.5 =
 * First version!
