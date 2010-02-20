@@ -5,7 +5,7 @@ Description: The easiest way to share your favorite content from sites like YouT
 Author: r-a-y
 Author URI: http://buddypress.org/developers/r-a-y
 Plugin URI: http://buddypress.org/groups/oembed-for-buddypress
-Version: 0.5
+Version: 0.51
 
 License: CC-GNU-GPL http://creativecommons.org/licenses/GPL/2.0/
 Donate: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KU38JAZ2DW8TW
@@ -26,6 +26,16 @@ if($bp_oembed['activity_comments'])
 if($bp_oembed['forum_posts'])
 	add_filter( 'bp_get_the_topic_post_content', 'ray_bp_oembed', 10);
 
+// whitelist hyperlinks
+$bp_oembed['whitelist'][] = '<a ';
+$bp_oembed['whitelist'][] = '">';
+$bp_oembed['whitelist'][] = '<a>';
+
+// whitelist BP domain
+$bp_oembed['whitelist'][] = parse_url(get_bloginfo('wpurl'), PHP_URL_HOST);
+
+/* really stop editing! */
+
 function ray_bp_oembed($content) {
 	global $bp_oembed;
 
@@ -44,7 +54,7 @@ function ray_bp_oembed($content) {
 	if(empty($matches[0]))
 		return $content;
 		
-	$whitelist = $bp_oembed['whitelist'];		
+	$whitelist = $bp_oembed['whitelist'];
 	
 	for($i=0;$i<count($matches[0]);$i++) {
 		$url = $matches[0][$i];
@@ -54,8 +64,8 @@ function ray_bp_oembed($content) {
 			if (strpos($url,$whitelist_item) !== false) { 
 				continue 2;
 			}
-		} 
-	
+		}
+		
 		$cachekey = '_oembed_' . md5($url);
 		$id = bp_get_activity_id();		
 		
@@ -81,7 +91,7 @@ function ray_bp_oembed($content) {
 		else {
 			// process url to oEmbed
 			$oembed = wp_oembed_get($url); // returns true if link is oEmbed
-			//$oembed = file_get_contents("http://autoembed.com/api/?url=".urlencode($url));		
+			//$oembed = file_get_contents("http://autoembed.com/api/?url=".urlencode($url));	
 			
 			if ($oembed) {
 				$replace = apply_filters( 'embed_oembed_html', $oembed, $url, $attr );
@@ -99,12 +109,12 @@ function ray_bp_oembed($content) {
 			if(!isset($id) && bp_forums_is_installed_correctly())
 				bb_update_postmeta(bp_get_the_topic_post_id(), $cachekey, $replace);
 			else
-				bp_activity_update_meta( bp_get_activity_id(), $cachekey, $replace );			
+				bp_activity_update_meta( bp_get_activity_id(), $cachekey, $replace );
 		}
-			
+		
 		$content = str_replace($matches[0][$i], $replace, $content);
-	}	
+	}
 	
 	return $content;
 }	
-?>	
+?>
