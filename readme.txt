@@ -4,13 +4,11 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: buddypress, oembed, embed
 Requires at least: WP 2.9 / WPMU 2.9.1.1 & BuddyPress 1.2
 Tested up to: WP 2.9 / WPMU 2.9.1.1 & BuddyPress 1.2
-Stable tag: 0.51
+Stable tag: 0.52
 
 The easiest way to share your favorite content from sites like YouTube, Flickr, Hulu and more on your BuddyPress network. 
 
 == Description ==
-
-#### IMPORTANT: Rename the plugin folder from "oembed-for-buddypress" to "bp-oembed" before activating the plugin! ####
 
 The easiest way to share your favorite content from sites like YouTube, Flickr, Hulu and more on your BuddyPress network.
 
@@ -38,10 +36,7 @@ When the update is posted, the URL automagically transforms into the embedded co
 
 #### This plugin requires Wordpress 2.9 or Wordpress MU 2.9.1.1 and BuddyPress 1.2 ####
 
-#### IMPORTANT: Rename the plugin folder from "oembed-for-buddypress" to "bp-oembed" before activating the plugin! ####
-
 1. Upload the plugin folder to the `/wp-content/plugins/` directory.
-1. Rename the plugin folder from "oembed-for-buddypress" to "bp-oembed".
 1. Login to the Wordpress dashboard and navigate to "Plugins > Installed".  Activate the "oEmbed for BuddyPress" plugin (for WPMU users, activate the plugin on the blog where BuddyPress is activated).
 
 
@@ -49,9 +44,9 @@ When the update is posted, the URL automagically transforms into the embedded co
 
 1. Deactivate the plugin.
 1. If you made changes to the config file, make a backup of `bp-oembed-config.php`
-1. Overwrite all files in `/wp-content/plugins/bp-oembed/'
+1. Overwrite all files for the plugin.
 1. Re-add custom settings from `bp-oembed-config.php` (if applicable)
-1. Reactivate the plugin
+1. Reactivate the plugin.
 
 
 == Frequently Asked Questions ==
@@ -179,6 +174,9 @@ There are a couple of ways you can choose to support me:
 * Spread the gospel of BuddyPress
 
 == Changelog ==
+
+= 0.52 =
+* No more plugin folder renaming! (thanks [apeatling](http://buddypress.org/developers/apeatling/))
 
 = 0.51 =
 * Added rename plugin folder instructions (*IMPORTANT*)
