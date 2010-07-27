@@ -2,8 +2,8 @@
 Contributors: r-a-y
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KU38JAZ2DW8TW
 Tags: buddypress, oembed, embed
-Requires at least: WP 2.9 / WPMU 2.9.1.1 & BuddyPress 1.2
-Tested up to: WP 2.9 / WPMU 2.9.1.1 & BuddyPress 1.2
+Requires at least: WP 2.9 / WPMU 2.9.1.1 & BuddyPress 1.2.1
+Tested up to: WP 3.0 & BuddyPress 1.2.5.2
 Stable tag: 0.52
 
 The easiest way to share your favorite content from sites like YouTube, Flickr, Hulu and more on your BuddyPress network. 
@@ -12,13 +12,14 @@ The easiest way to share your favorite content from sites like YouTube, Flickr, 
 
 The easiest way to share your favorite content from sites like YouTube, Flickr, Hulu and more on your BuddyPress network.
 
-oEmbed for BuddyPress utilizes Wordpress' own oEmbed class, so by default, you can share content from the following sites:
+oEmbed for BuddyPress utilizes [Wordpress' own oEmbed class](http://codex.wordpress.org/Embeds), so by default, you can share content from the following sites:
 
 * YouTube
 * Blip.tv
 * Vimeo
 * DailyMotion
 * Flickr
+* Smugmug
 * Hulu
 * Viddler
 * Qik
@@ -26,6 +27,8 @@ oEmbed for BuddyPress utilizes Wordpress' own oEmbed class, so by default, you c
 * Photobucket
 * Scribd
 * Wordpress.tv
+* PollDaddy
+* FunnyOrDie
 
 How do you use the plugin?  Simple!  Input **any** URL from one of the listed sites above into an activity update or forum post in BuddyPress.
 
@@ -34,19 +37,9 @@ When the update is posted, the URL automagically transforms into the embedded co
 
 == Installation ==
 
-#### This plugin requires Wordpress 2.9 or Wordpress MU 2.9.1.1 and BuddyPress 1.2 ####
-
-1. Upload the plugin folder to the `/wp-content/plugins/` directory.
-1. Login to the Wordpress dashboard and navigate to "Plugins > Installed".  Activate the "oEmbed for BuddyPress" plugin (for WPMU users, activate the plugin on the blog where BuddyPress is activated).
-
-
-#### Upgrading ####
-
-1. Deactivate the plugin.
-1. If you made changes to the config file, make a backup of `bp-oembed-config.php`
-1. Overwrite all files for the plugin.
-1. Re-add custom settings from `bp-oembed-config.php` (if applicable)
-1. Reactivate the plugin.
+1. Download, install and activate the plugin.
+1. That's it!
+1. Read the FAQ for other configuration settings.
 
 
 == Frequently Asked Questions ==
@@ -56,112 +49,126 @@ When the update is posted, the URL automagically transforms into the embedded co
 [oEmbed](http://www.oembed.com/) is a simple API that allows a website to display embedded content (such as photos or videos) when a user posts a link to that resource.  It was designed to avoid copying and pasting HTML from the media you wish to embed.
 
 
-#### What is oEmbed for BuddyPress? ####
+#### So what does this plugin do?" ####
 
-oEmbed for BuddyPress utilizes [Wordpress' own oEmbed class](http://codex.wordpress.org/Embeds), so by default, you can share content from the following sites:
-
-* YouTube
-* Blip.tv
-* Vimeo
-* DailyMotion
-* Flickr
-* Hulu
-* Viddler
-* Qik
-* Revision3
-* Photobucket
-* Scribd
-* Wordpress.tv
-
-The plugin allows you to input **any** URL from one of the listed sites above into an activity update or forum post in BuddyPress.
+This plugin utilizes [Wordpress' own oEmbed class](http://codex.wordpress.org/Embeds) allowing you to input **any** URL from one of the default-supported sites into an activity update or forum post in BuddyPress.
 
 When the update is posted, the URL automagically transforms into the embedded content.  There is no GUI.
 
-For more information, check out the "Other Notes" tab.
 
+#### How do I extend support for other websites? ####
 
-#### What version of BuddyPress do I need to use this plugin? ####
+You can use *any* Wordpress plugin that extends support for oEmbed or Wordpress' embed providers list.
 
-You need at least BuddyPress 1.2, which in turn requires Wordpress 2.9 or Wordpress MU 2.9.1.1.
+In particular, check out:
+* [Embedly](http://wordpress.org/extend/plugins/embedly/) - add support for [106 sites](http://api.embed.ly/) (and counting)
+* [oohEmbed](http://wordpress.org/extend/plugins/oohembed/) - add support for [29 sites](http://oohembed.com/#configuration)
+* Embeddable! - my own plugin to add support to various sites and file extensions (coming soon)
+
+With a bit of code and PHP knowledge, you can also manually add an embed provider yourself!  For more information, read the following articles:
+http://codex.wordpress.org/Embeds#Adding_Support_For_An_oEmbed-Enabled_Site
+http://codex.wordpress.org/Embeds#Adding_Support_For_A_Non-oEmbed_Site
+
+I get many requests to add support for "so-and-so" website.  Including all the plugins I have released and the many hours I have spent on support and research, only six people have made a donation (that doesn't even equate to 1% of total downloads!).
+
+For this reason, I am **not** accepting requests to add support for other websites.  However, if you donate towards the plugin, I will consider and implement your request.  If you are planning on donating for this sole purpose, please [contact me](http://buddypress.org/community/members/r-a-y) on the BuddyPress forums *before* you do!
 
 
 #### Where's the admin settings page? ####
 
 oEmbed for BuddyPress works transparently in the background.
 
-There is no admin settings page!  This is intentional (at least for now).  All settings can be modified in `bp-oembed-config.php`.
+There is no admin settings page.  This is intentional (at least for now).  All settings can be defined in wp-config.php
 
-By default, the plugin allows embedding in activity updates, activity comments and forum posts.
+By default, the plugin allows embedding in activity updates, activity replies, and forum posts.
 
-
-#### Then how do I turn off oEmbed for certain BuddyPress components? ####
-
-Open `bp-oembed-config.php` in a text editor.
-
-Let's say you wanted to disable oEmbed for activity comments.
-
-Find the following line:
-
-`$bp_oembed['activity_comments'] = true;`
-
-And change it to:
-
-`$bp_oembed['activity_comments'] = false;`
+Group descriptions and profile fields are disabled by default.
 
 
-#### How do I extend Wordpress' oEmbed provider list? ####
+#### Then how do I enable / disable oEmbed for certain BuddyPress components? ####
 
-By default, you can only embed content from websites listed on Wordpress' internal whitelist. This is to prevent the embedding of malicious content from untrustworthy websites.
+As of v0.6, the following lines can be added to wp-config.php to disable / enable oEmbed components:
 
-To add an oEmbed provider, read the following article for more info:
-http://codex.wordpress.org/Embeds#Adding_Support_For_An_oEmbed-Enabled_Site
+*Turn off* oEmbed for the following components:
 
-The other option is you can override Wordpress' internal whitelist and enable *any* site that is oEmbeddable by downloading and activating Viper007Bond's Enable oEmbed Discovery plugin.
-**You should only activate the oEmbed Discovery plugin if you trust your user base. You've been warned.**
+`define( 'BP_OEMBED_DISABLE_ACTIVITY', true );`
+
+`define( 'BP_OEMBED_DISABLE_ACTIVITY_REPLIES', true );`
+
+`define( 'BP_OEMBED_DISABLE_FORUM_POSTS', true );`
 
 
-== Technical info ==
+*Turn on* oEmbed for the following components:
 
-Because oEmbed for BuddyPress checks each link to see if it is oEmbeddable, for performance reasons, each link is cached in the database to reduce redundant oEmbed requests.
+`define( 'BP_OEMBED_DISABLE_GROUP_DESCRIPTION', false );`
 
-The cached entry is either the embed code (if the link is oEmbeddable) or the failed link.
+`define( 'BP_OEMBED_DISABLE_XPROFILE', false );`
 
-**Whitelist feature**
 
-By default, the plugin *whitelists* hyperlinks and URLs residing on the same domain as BuddyPress.
+== Internal configuration ==
 
-The cool thing is you can extend the whitelist.
+= Resizing embed items =
 
-For example, in an activity update, say you type in "http://www.google.com", the plugin will cache that link in the database.  Say you wanted to omit Google.com links from being cached.
+Instead of using the default embed width and height given by oEmbed, you can manually set the width for certain components.
 
-Open `bp-oembed-config.php` in a text editor and add the following line to the end:
+Add the following lines in wp-config.php and adjust to your liking:
 
-`$bp_oembed['whitelist'][] = 'google.com';`
+`define( 'BP_OEMBED_ACTIVITY_STREAM_WIDTH', '200' );`
+	
+`define( 'BP_OEMBED_ACTIVITY_PERMALINK_WIDTH', '400' );`
+	
+`define( 'BP_OEMBED_FORUM_POST_WIDTH', '300' );`
 
-This will whitelist all links from google.com.
+`define( 'BP_OEMBED_GROUP_DESC_WIDTH', '200' );`
+
+`define( 'BP_OEMBED_XPROFILE_WIDTH', '200' );`
+
+
+= Whitelist carat =
+
+If you prefix the "^" character in front of a link, the URL will not be parsed by the plugin.
+
+eg. `^http://www.youtube.com/watch?v=Lz1EOYtxUu0` would return as a hyperlink and not the embedded content.
+
+You can change the "^" character to anything you want by adding the following line to wp-config.php:
+
+`define( 'BP_OEMBED_WHITELIST_CARAT', '%' );`
+
+
+= Filters =
+
+For theme and plugin developers, there are a bunch of filters you can use to override certain content.
+
+* **bp_oembed_whitelist_url** - used to output links when the "^" character is prefixed
+
+* **embed_oembed_html** - used for oEmbed content
+
+* **embed_handler_html** - used for non-oEmbed content
+
+Look at the source code for more details.
+
+
+= Blacklist =
+
+This is a legacy feature from v0.5 that allows you to blacklist certain websites from being parsed by the plugin.  I'm leaving this feature in as it's an easy way to block sites you may not want your userbase to use.  View bp-oembed-legacy.php for more details.
+
 
 == Known issues ==
-
-* array_map() warning is displayed - this is a BuddyPress issue, which is fixed in the latest bleeding version of BuddyPress (http://trac.buddypress.org/changeset/2747)
-
-* When a forum post is deleted, the oEmbed forum post cache in bbPress isn't deleted ([appears to be a bbPress issue](http://bbpress.org/forums/topic/does-deleting-a-forum-post-delete-the-related-bb_meta-as-well))
 
 * Hyperlinks with single quotes get mangled (if you're a regex expert, I could use your help!)
 
 eg. `<a href='http://buddypress.org'>BuddyPress</a>`
 
-* Hyperlinking an oEmbeddable link and inputting the same link in plain text will show the oEmbeddable item three times (two times if using anchor text) (not many people will do this)
+* Hyperlinking an embeddable link and inputting the same link in plain text will show the embedded item three times (two times if using anchor text) (not many people will do this)
 
+* Using a custom resize option for forum posts and group description will conflict with one another when on a group forum topic.  Forum post size will take precedence when this occurs.
 
-== Future versions ==
-
-* Implement AutoEmbed.com API fallback if oEmbed fails (will be an option)
-* Fix known issues ;)
 
 == Special thanks ==
 
 * [Viper007Bond](http://www.viper007bond.com/) - for creating the WP_oEmbed class
 * [BuddyPress.org](http://buddypress.org) - the reason why we can all deploy a social network on Wordpress
+
 
 == Donate! ==
 
@@ -173,10 +180,24 @@ There are a couple of ways you can choose to support me:
 * Rate this plugin
 * Spread the gospel of BuddyPress
 
+
 == Changelog ==
 
+= 0.6 =
+* Changed oEmbed caching logic for performance reasons (thanks apeatling)
+* Added support for WP non-oEmbed handlers (more info can be found [here](http://codex.wordpress.org/Function_Reference/wp_embed_register_handler))
+* Added partial support for resizing embed items based on component (more info can be found in the "Other Notes" section)
+* Added partial support for group descriptions and profile fields (disabled by default)
+* Added support to whitelist an embed link so it stays as a link (more info can be found in the "Other Notes" section)
+* Added support to remove oEmbed cache when a forum post is deleted
+* Added a CSS class around embedded item for theme designers
+* Added transparent background to flash content by default
+* Fixed fatal error if the activity, forum or group components were disabled (thanks dcservices for reporting)
+* Fixed AJAX bug where if an embed link returned javascript, the activity stream on an AJAX request would break; now returns URL on AJAX request if content is javascript (requires server to support HTTP_X_REQUESTED_WITH)
+* Fixed embed bug where both an @mention + an embed link was used in the same update, the embed link would break (thanks sicksight for reporting)
+
 = 0.52 =
-* No more plugin folder renaming! (thanks [apeatling](http://buddypress.org/developers/apeatling/))
+* No more plugin folder renaming! (thanks apeatling)
 
 = 0.51 =
 * Added rename plugin folder instructions (*IMPORTANT*)
