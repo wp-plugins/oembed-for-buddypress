@@ -15,13 +15,13 @@ if( !defined( 'BP_OEMBED_DISABLE_FORUM_POSTS' ) )
 if( !defined( 'BP_OEMBED_DISABLE_GROUP_DESCRIPTION' ) )
 	define('BP_OEMBED_DISABLE_GROUP_DESCRIPTION', true);
 
-	if( BP_OEMBED_DISABLE_GROUP_DESCRIPTION != false )
+	if( BP_OEMBED_DISABLE_GROUP_DESCRIPTION == false )
 		add_filter( 'bp_get_group_description', 'ray_bp_oembed', 9 );
 		
 if( !defined( 'BP_OEMBED_DISABLE_XPROFILE' ) )
 	define( 'BP_OEMBED_DISABLE_XPROFILE', true );
 
-	if( BP_OEMBED_DISABLE_XPROFILE != false )
+	if( BP_OEMBED_DISABLE_XPROFILE == false )
 		add_filter('bp_get_the_profile_field_value','ray_bp_oembed', 9);
 
 
