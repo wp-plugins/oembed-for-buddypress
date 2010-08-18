@@ -73,8 +73,9 @@ function ray_bp_oembed($content) {
 
 	// match URLs - could use some work
 //	preg_match_all( '@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@', $content, $matches );
-	preg_match_all('`\S*?(https?://[\w#$&+,\/:;=?@.-]+)[^\w#$&+,\/:;=?@.-]*?`i', $content, $matches);
-//	preg_match_all( '|^\s*(https?://[^\s"]+)\s*$|im', $content, $matches );
+//	preg_match_all('`\S*?(https?://[\w#$&+,\/:;=?@.-%]+)[^\w#$&+,\/:;=?@.-%]*?`i', $content, $matches);
+	preg_match_all('`\S*?(https?://[^\s"]+)\s*?`i', $content, $matches);
+//	preg_match_all( '|^\S*(https?://[^\s"]+)\s*$|im', $content, $matches );
 
 	// debug regex
 	//if(!empty($matches[0]))
