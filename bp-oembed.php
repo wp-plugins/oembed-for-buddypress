@@ -160,9 +160,9 @@ function ray_bp_oembed($content) {
 				$cache = bp_activity_get_meta( bp_get_activity_id(), $cachekey );
 			elseif ( bp_is_group_forum_topic() )
 				$cache = bb_get_postmeta( bp_get_the_topic_post_id(), $cachekey );
-			elseif( bp_current_component == 'groups' )
+			elseif( bp_current_component() == 'groups' )
 				$cache = groups_get_groupmeta( bp_get_group_id(), $cachekey );
-			elseif( bp_current_component == 'profile' )
+			elseif( bp_current_component() == 'profile' )
 				$cache = get_usermeta( $bp->displayed_user->id, $cachekey );
 
 			// cache check
@@ -183,9 +183,9 @@ function ray_bp_oembed($content) {
 					bp_activity_update_meta( bp_get_activity_id(), $cachekey, $replace );
 				elseif ( bp_is_group_forum_topic() )
 					bb_update_postmeta(bp_get_the_topic_post_id(), $cachekey, $replace);
-				elseif( bp_current_component == 'groups' )
+				elseif( bp_current_component() == 'groups' )
 					groups_update_groupmeta(bp_get_group_id(), $cachekey, $replace);
-				elseif( bp_current_component == 'profile' )
+				elseif( bp_current_component() == 'profile' )
 					update_usermeta( $bp->displayed_user->id, $cachekey, $replace );				
 				
 				//add_filter('oembed_dataparse','ray_oembed_parse', 10, 3);
